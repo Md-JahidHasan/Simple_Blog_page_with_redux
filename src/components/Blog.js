@@ -1,7 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchByCategory } from '../redux/filter/actionTypes';
 
 const Blog = ({blog}) => {
+    const dispatch = useDispatch()
     const {id, blogTitle, blogImage, author, category, date} = blog;
+    // const filter  = useSelector((state)=>state.filterReducer);
+
+    const handleCategoryFilter = (category) =>{
+        dispatch(searchByCategory(category))
+    }
+
     return (
         <div
             class="flex flex-col rounded-lg shadow-lg overflow-hidden"
@@ -18,7 +27,7 @@ const Blog = ({blog}) => {
                 class="flex-1 bg-white p-6 flex flex-col justify-between"
             >
                 <div class="flex-1">
-                    <p class="text-sm font-medium text-indigo-600">
+                    <p onClick={()=>handleCategoryFilter(category)} class="text-sm font-medium text-indigo-600">
                         <span
                             class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"
                         >

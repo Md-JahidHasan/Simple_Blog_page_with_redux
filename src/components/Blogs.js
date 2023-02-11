@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import Blog from './Blog';
 
 const Blogs = () => {
-    const blogs = useSelector((state)=>state.blogsReducer)
-    console.log(blogs);
+    const blogs = useSelector((state)=>state.blogsReducer);
+    const filter = useSelector((state)=>state.filterReducer);
+    console.log(filter);
     return (
         <section
             class="relative bg-gray-50 pt-8 pb-20 px-4 sm:px-6 lg:pt-16 lg:pb-16 lg:px-8"
@@ -33,7 +34,29 @@ const Blogs = () => {
                 >
                     {/* <!-- single card  --> */}
                     {
-                        blogs.map(blog=><Blog
+                        blogs
+                        .filter(blog=>{
+                            switch (filter.searchText) {
+                                case '':
+                                    return true;
+                            
+                                default:
+                                    return blog.blogTitle.toLowerCase().includes(filter.searchText.toLowerCase())
+                            }
+                        })
+                        .filter((blog)=>{
+                            switch (filter.searchCategory) {
+                                case 'Article':
+                                    return blog.category === 'Article'
+                                case 'News':
+                                    return blog.category === 'News'
+                                case 'Content':
+                                    return blog.category === 'Content'
+                                default:
+                                    return true
+                            }
+                        })
+                        .map(blog=><Blog
                         key={blog.id}
                         blog={blog}
                         ></Blog>)

@@ -1,7 +1,7 @@
 import { SEARCHBYCATEGORY, SEARCHBYTITLE } from "./actions";
 
 const initialState = {
-    searchText: '',
+    searchText:'',
     searchCategory:'All'
 }
 
@@ -10,13 +10,13 @@ export const filterReducer = (state = initialState, action) =>{
         case SEARCHBYTITLE:
             return {
                 ...state,
-                searchText: action.payloads
+                searchText:action.payloads
             }
 
         case SEARCHBYCATEGORY:
             return {
                 ...state,
-                searchCategory: action.payloads
+                searchCategory:action.payloads
             }
     
         default:
