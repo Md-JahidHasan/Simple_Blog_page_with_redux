@@ -1,3 +1,5 @@
+# Live Link:
+Click on the link to view the project: https://eclectic-axolotl-faf56d.netlify.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
